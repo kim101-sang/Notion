@@ -4,23 +4,61 @@
   <meta charset="UTF-8">
   <title>Notion Widget</title>
   <style>
-    /* ... your existing styles ... */
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .widget {
+      padding: 10px 25px;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 2px solid #000000;
+      width: 85vw;
+      max-width: 600px;
+      color: #000000;
+      text-align: center;
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    #greeting {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+    }
+    #tagline {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #555555;
+    }
+    #date {
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.25rem;
+    }
+    #time {
+      font-size: 1.25rem;
+      font-family: 'Courier New', monospace;
+    }
   </style>
 </head>
 <body>
+
   <div class="widget">
     <div id="greeting">Loading…</div>
     <div id="tagline">…</div>
-    <div id="date"></div>
-    <div id="time"></div>
+    <div id="date">…</div>
+    <div id="time">…</div>
   </div>
 
   <script>
     const name = 'Kim';
     const greetingEl = document.getElementById('greeting');
+    const taglineEl  = document.getElementById('tagline');
     const dateEl     = document.getElementById('date');
     const timeEl     = document.getElementById('time');
-    const taglineEl  = document.getElementById('tagline');
 
     function getGreeting() {
       const hrs = new Date().getHours();
@@ -39,7 +77,7 @@
         ];
       } else if (hrs < 17) {
         return [
-          'Time to create something amazing!',
+          'Time to create something amazing?',
           'Ready to craft your vision?',
           'Let’s turn ideas into reality!'
         ];
@@ -64,9 +102,9 @@
     }
 
     function getFormattedTime() {
-      let now = new Date();
-      let hrs  = now.getHours();
-      let ampm = hrs >= 12 ? 'PM' : 'AM';
+      const now = new Date();
+      let hrs = now.getHours();
+      const ampm = hrs >= 12 ? 'PM' : 'AM';
       hrs = hrs % 12 || 12;
       const mm = String(now.getMinutes()).padStart(2,'0');
       const ss = String(now.getSeconds()).padStart(2,'0');
@@ -80,10 +118,11 @@
       timeEl.innerText     = getFormattedTime();
     }
 
+    // Initial render & auto‐update every second
     render();
     setInterval(render, 1000);
   </script>
+
 </body>
 </html>
-
 
