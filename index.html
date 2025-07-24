@@ -14,15 +14,22 @@
       align-items: center;
     }
     .widget {
+      /* your specified size & padding */
       padding: 10px 25px;
       border-radius: 10px;
-      background: #ffffff;
-      border: 2px solid #000000;
       width: 85vw;
       max-width: 600px;
+
+      /* white background + black outline */
+      background: #ffffff;
+      border: 2px solid #000000;
       color: #000000;
+
+      display: inline-block;
       text-align: center;
-      box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+
+      /* subtle shadow */
+      box-shadow: 2px 2px 1px 0px #330835;
     }
     #greeting {
       font-size: 1.75rem;
@@ -93,7 +100,6 @@
     function getHourlyTagline() {
       const lines = getTaglines();
       const hr = new Date().getHours();
-      // rotate through the array once per hour
       return lines[ hr % lines.length ];
     }
 
@@ -120,10 +126,10 @@
       timeEl.innerText     = getFormattedTime();
     }
 
-    // Initial render & update every second (tagline will only change when hour changes)
     render();
     setInterval(render, 1000);
   </script>
 
 </body>
 </html>
+
