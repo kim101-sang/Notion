@@ -14,12 +14,17 @@
       align-items: center;
     }
     .widget {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      /* your custom card sizing + look */
+      padding: 10px 25px;
+      border-radius: 10px;
+      background: #553c4e;
+      width: 85vw;
+      color: #fff;
+      display: inline-block;
+      box-shadow: 2px 2px 1px 0px #330835;
+
+      /* center text inside */
       text-align: center;
-      min-width: 300px;
     }
     #greeting {
       font-size: 1.75rem;
@@ -27,9 +32,8 @@
     }
     #date {
       font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 0.25rem;
       letter-spacing: 1px;
+      margin-bottom: 0.25rem;
     }
     #time {
       font-size: 1.25rem;
@@ -50,7 +54,6 @@
     const dateEl     = document.getElementById('date');
     const timeEl     = document.getElementById('time');
 
-    // Choose greeting based on hour
     function getGreeting() {
       const hrs = new Date().getHours();
       if (hrs < 12)      return 'Good Morning ' + name + ' ☀️';
@@ -58,14 +61,12 @@
       return               'Good Evening ' + name + ' 🌙';
     }
 
-    // Format full date: THURSDAY, JULY 24 2025
     function getFormattedDate() {
       const now = new Date();
       const opts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
       return now.toLocaleDateString('en-US', opts).toUpperCase();
     }
 
-    // Format time as HH : MM : SS AM/PM
     function getFormattedTime() {
       let now = new Date();
       let hrs  = now.getHours();
@@ -76,14 +77,12 @@
       return `${hrs} : ${mm} : ${ss} ${ampm}`;
     }
 
-    // Render everything
     function render() {
       greetingEl.innerText = getGreeting();
       dateEl.innerText     = getFormattedDate();
       timeEl.innerText     = getFormattedTime();
     }
 
-    // Initial render & update every second
     render();
     setInterval(render, 1000);
   </script>
