@@ -4,46 +4,13 @@
   <meta charset="UTF-8">
   <title>Notion Widget</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .widget {
-      /* your custom card sizing + look */
-      padding: 10px 25px;
-      border-radius: 10px;
-      background: #553c4e;
-      width: 85vw;
-      color: #fff;
-      display: inline-block;
-      box-shadow: 2px 2px 1px 0px #330835;
-
-      /* center text inside */
-      text-align: center;
-    }
-    #greeting {
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
-    }
-    #date {
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      margin-bottom: 0.25rem;
-    }
-    #time {
-      font-size: 1.25rem;
-      font-family: 'Courier New', monospace;
-    }
+    /* ... your existing styles ... */
   </style>
 </head>
 <body>
   <div class="widget">
     <div id="greeting">Loading…</div>
+    <div id="tagline">…</div>
     <div id="date"></div>
     <div id="time"></div>
   </div>
@@ -53,12 +20,41 @@
     const greetingEl = document.getElementById('greeting');
     const dateEl     = document.getElementById('date');
     const timeEl     = document.getElementById('time');
+    const taglineEl  = document.getElementById('tagline');
 
     function getGreeting() {
       const hrs = new Date().getHours();
       if (hrs < 12)      return 'Good Morning ' + name + ' ☀️';
       if (hrs < 17)      return 'Good Afternoon ' + name + ' 🌟';
       return               'Good Evening ' + name + ' 🌙';
+    }
+
+    function getTaglines() {
+      const hrs = new Date().getHours();
+      if (hrs < 12) {
+        return [
+          'Ready to build your next big idea?',
+          'Let’s kick off something awesome!',
+          'Time to launch your creativity!'
+        ];
+      } else if (hrs < 17) {
+        return [
+          'Time to create something amazing!',
+          'Ready to craft your vision?',
+          'Let’s turn ideas into reality!'
+        ];
+      } else {
+        return [
+          'Recharge now, create tomorrow’s success!',
+          'Unwind and dream big for tomorrow!',
+          'Reflect and refine your masterpiece!'
+        ];
+      }
+    }
+
+    function getRandomTagline() {
+      const lines = getTaglines();
+      return lines[Math.floor(Math.random() * lines.length)];
     }
 
     function getFormattedDate() {
@@ -79,6 +75,7 @@
 
     function render() {
       greetingEl.innerText = getGreeting();
+      taglineEl.innerText  = getRandomTagline();
       dateEl.innerText     = getFormattedDate();
       timeEl.innerText     = getFormattedTime();
     }
@@ -88,4 +85,5 @@
   </script>
 </body>
 </html>
+
 
