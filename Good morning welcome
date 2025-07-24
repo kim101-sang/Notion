@@ -1,0 +1,29 @@
+// Time-based, rotating greetings with minimal emojis
+const hrs = new Date().getHours();
+let options = [];
+
+// Define tagline options for each time block
+if (hrs < 12) {
+  options = [
+    'Good Morning Kim ☀️ — ready to build your next big idea?',
+    'Good Morning Kim ☕️ — let’s kick off something awesome!',
+    'Good Morning Kim 🚀 — time to launch your creativity!'
+  ];
+} else if (hrs < 17) {
+  options = [
+    'Good Afternoon Kim 🌟 — time to create something amazing!',
+    'Good Afternoon Kim 🔧 — ready to craft your vision?',
+    'Good Afternoon Kim 💡 — let’s turn ideas into reality!'
+  ];
+} else {
+  options = [
+    'Good Evening Kim 🌙 — recharge now, create tomorrow’s success!',
+    'Good Evening Kim ✨ — unwind and dream big for tomorrow!',
+    'Good Evening Kim 🛠️ — reflect and refine your masterpiece!'
+  ];
+}
+
+// Pick a random tagline from the current block
+const greet = options[Math.floor(Math.random() * options.length)];
+
+console.log(greet);
