@@ -13,42 +13,37 @@
       justify-content: center;
       align-items: center;
     }
-    .widget {
-      /* exact padding you asked for */
-      padding: 10px 25px;
+    .card {
+      /* explicit four-value padding */
+      padding: 10px 25px 10px 25px;
       border-radius: 10px;
-
-      /* white background + black outline */
-      background: #ffffff;
-      border: 2px solid #000000;
-      box-shadow: 2px 2px 1px 0px #330835;
-
-      /* full-width but capped, and always tall enough */
       width: 85vw;
       max-width: 800px;
-      min-height: 150px;
 
-      /* center block */
-      display: block;
-      margin: 0 auto;
-      
-      color: #000;
+      /* black & white look */
+      background: #ffffff;
+      border: 2px solid #000000;
+      color: #000000;
+
+      display: inline-block;
       text-align: center;
+
+      /* subtle shadow */
+      box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.1);
     }
     #greeting {
       font-size: 1.75rem;
-      margin-top: 0;
-      margin-bottom: 0.25rem;
+      margin: 0 0 0.25rem;
     }
     #tagline {
       font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: #555;
+      margin: 0 0 0.5rem;
+      color: #555555;
     }
     #date {
       font-size: 0.9rem;
       letter-spacing: 1px;
-      margin-bottom: 0.25rem;
+      margin: 0 0 0.25rem;
     }
     #time {
       font-size: 1.25rem;
@@ -58,7 +53,7 @@
 </head>
 <body>
 
-  <div class="widget">
+  <div class="card">
     <div id="greeting">Loading…</div>
     <div id="tagline">…</div>
     <div id="date">…</div>
@@ -137,3 +132,4 @@
 
 </body>
 </html>
+
