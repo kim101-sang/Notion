@@ -6,57 +6,87 @@
   <style>
     body {
       font-family: sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
       background: #f9f9f9;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .widget {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      min-width: 300px;
     }
     #greeting {
-      font-size: 1.5rem;
-      color: #333;
-      text-align: center;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      background: #fff;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    #date {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.25rem;
+      letter-spacing: 1px;
+    }
+    #time {
+      font-size: 1.25rem;
+      font-family: 'Courier New', monospace;
     }
   </style>
 </head>
 <body>
-  <div id="greeting">Loading…</div>
+  <div class="widget">
+    <div id="greeting">Loading…</div>
+    <div id="date"></div>
+    <div id="time"></div>
+  </div>
 
   <script>
-    // Time-based, rotating greetings with minimal emojis
-    const hrs = new Date().getHours();
-    let options = [];
+    const name = 'Kim';
+    const greetingEl = document.getElementById('greeting');
+    const dateEl     = document.getElementById('date');
+    const timeEl     = document.getElementById('time');
 
-    if (hrs < 12) {
-      options = [
-        'Good Morning Kim ☀️ — ready to build your next big idea?',
-        'Good Morning Kim ☕️ — let’s kick off something awesome!',
-        'Good Morning Kim 🚀 — time to launch your creativity!'
-      ];
-    } else if (hrs < 17) {
-      options = [
-        'Good Afternoon Kim 🌟 — time to create something amazing!',
-        'Good Afternoon Kim 🔧 — ready to craft your vision?',
-        'Good Afternoon Kim 💡 — let’s turn ideas into reality!'
-      ];
-    } else {
-      options = [
-        'Good Evening Kim 🌙 — recharge now, create tomorrow’s success!',
-        'Good Evening Kim ✨ — unwind and dream big for tomorrow!',
-        'Good Evening Kim 🛠️ — reflect and refine your masterpiece!'
-      ];
+    // Choose greeting based on hour
+    function getGreeting() {
+      const hrs = new Date().getHours();
+      if (hrs < 12)      return 'Good Morning ' + name + ' ☀️';
+      if (hrs < 17)      return 'Good Afternoon ' + name + ' 🌟';
+      return               'Good Evening ' + name + ' 🌙';
     }
 
-    // Pick a random tagline from the current block
-    const greet = options[Math.floor(Math.random() * options.length)];
+    // Format full date: THURSDAY, JULY 24 2025
+    function getFormattedDate() {
+      const now = new Date();
+      const opts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+      return now.toLocaleDateString('en-US', opts).toUpperCase();
+    }
 
-    // Display it in the page
-    document.getElementById('greeting').innerText = greet;
+    // Format time as HH : MM : SS AM/PM
+    function getFormattedTime() {
+      let now = new Date();
+      let hrs  = now.getHours();
+      let ampm = hrs >= 12 ? 'PM' : 'AM';
+      hrs = hrs % 12 || 12;
+      const mm = String(now.getMinutes()).padStart(2,'0');
+      const ss = String(now.getSeconds()).padStart(2,'0');
+      return `${hrs} : ${mm} : ${ss} ${ampm}`;
+    }
+
+    // Render everything
+    function render() {
+      greetingEl.innerText = getGreeting();
+      dateEl.innerText     = getFormattedDate();
+      timeEl.innerText     = getFormattedTime();
+    }
+
+    // Initial render & update every second
+    render();
+    setInterval(render, 1000);
   </script>
 </body>
 </html>
+
