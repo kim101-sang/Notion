@@ -14,31 +14,36 @@
       align-items: center;
     }
     .widget {
-      /* your specified size & padding */
+      /* exact padding you asked for */
       padding: 10px 25px;
       border-radius: 10px;
-      width: 85vw;
-      max-width: 600px;
 
       /* white background + black outline */
       background: #ffffff;
       border: 2px solid #000000;
-      color: #000000;
-
-      display: inline-block;
-      text-align: center;
-
-      /* subtle shadow */
       box-shadow: 2px 2px 1px 0px #330835;
+
+      /* full-width but capped, and always tall enough */
+      width: 85vw;
+      max-width: 800px;
+      min-height: 150px;
+
+      /* center block */
+      display: block;
+      margin: 0 auto;
+      
+      color: #000;
+      text-align: center;
     }
     #greeting {
       font-size: 1.75rem;
+      margin-top: 0;
       margin-bottom: 0.25rem;
     }
     #tagline {
       font-size: 1rem;
       margin-bottom: 0.5rem;
-      color: #555555;
+      color: #555;
     }
     #date {
       font-size: 0.9rem;
@@ -61,7 +66,7 @@
   </div>
 
   <script>
-    const name = 'Kim';
+    const name       = 'Kim';
     const greetingEl = document.getElementById('greeting');
     const taglineEl  = document.getElementById('tagline');
     const dateEl     = document.getElementById('date');
@@ -69,9 +74,9 @@
 
     function getGreeting() {
       const hrs = new Date().getHours();
-      if (hrs < 12)      return 'Good Morning ' + name + ' ☀️';
-      if (hrs < 17)      return 'Good Afternoon ' + name + ' 🌟';
-      return               'Good Evening ' + name + ' 🌙';
+      if (hrs < 12)      return `Good Morning ${name} ☀️`;
+      if (hrs < 17)      return `Good Afternoon ${name} 🌟`;
+      return               `Good Evening ${name} 🌙`;
     }
 
     function getTaglines() {
@@ -99,19 +104,19 @@
 
     function getHourlyTagline() {
       const lines = getTaglines();
-      const hr = new Date().getHours();
+      const hr    = new Date().getHours();
       return lines[ hr % lines.length ];
     }
 
     function getFormattedDate() {
-      const now = new Date();
+      const now  = new Date();
       const opts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
       return now.toLocaleDateString('en-US', opts).toUpperCase();
     }
 
     function getFormattedTime() {
-      const now = new Date();
-      let hrs = now.getHours();
+      const now  = new Date();
+      let   hrs  = now.getHours();
       const ampm = hrs >= 12 ? 'PM' : 'AM';
       hrs = hrs % 12 || 12;
       const mm = String(now.getMinutes()).padStart(2,'0');
@@ -132,4 +137,3 @@
 
 </body>
 </html>
-
