@@ -90,9 +90,11 @@
       }
     }
 
-    function getRandomTagline() {
+    function getHourlyTagline() {
       const lines = getTaglines();
-      return lines[Math.floor(Math.random() * lines.length)];
+      const hr = new Date().getHours();
+      // rotate through the array once per hour
+      return lines[ hr % lines.length ];
     }
 
     function getFormattedDate() {
@@ -113,16 +115,15 @@
 
     function render() {
       greetingEl.innerText = getGreeting();
-      taglineEl.innerText  = getRandomTagline();
+      taglineEl.innerText  = getHourlyTagline();
       dateEl.innerText     = getFormattedDate();
       timeEl.innerText     = getFormattedTime();
     }
 
-    // Initial render & auto‐update every second
+    // Initial render & update every second (tagline will only change when hour changes)
     render();
     setInterval(render, 1000);
   </script>
 
 </body>
 </html>
-
