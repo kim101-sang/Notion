@@ -1,29 +1,62 @@
-// Time-based, rotating greetings with minimal emojis
-const hrs = new Date().getHours();
-let options = [];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notion Widget</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    #greeting {
+      font-size: 1.5rem;
+      color: #333;
+      text-align: center;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="greeting">Loading…</div>
 
-// Define tagline options for each time block
-if (hrs < 12) {
-  options = [
-    'Good Morning Kim ☀️ — ready to build your next big idea?',
-    'Good Morning Kim ☕️ — let’s kick off something awesome!',
-    'Good Morning Kim 🚀 — time to launch your creativity!'
-  ];
-} else if (hrs < 17) {
-  options = [
-    'Good Afternoon Kim 🌟 — time to create something amazing!',
-    'Good Afternoon Kim 🔧 — ready to craft your vision?',
-    'Good Afternoon Kim 💡 — let’s turn ideas into reality!'
-  ];
-} else {
-  options = [
-    'Good Evening Kim 🌙 — recharge now, create tomorrow’s success!',
-    'Good Evening Kim ✨ — unwind and dream big for tomorrow!',
-    'Good Evening Kim 🛠️ — reflect and refine your masterpiece!'
-  ];
-}
+  <script>
+    // Time-based, rotating greetings with minimal emojis
+    const hrs = new Date().getHours();
+    let options = [];
 
-// Pick a random tagline from the current block
-const greet = options[Math.floor(Math.random() * options.length)];
+    if (hrs < 12) {
+      options = [
+        'Good Morning Kim ☀️ — ready to build your next big idea?',
+        'Good Morning Kim ☕️ — let’s kick off something awesome!',
+        'Good Morning Kim 🚀 — time to launch your creativity!'
+      ];
+    } else if (hrs < 17) {
+      options = [
+        'Good Afternoon Kim 🌟 — time to create something amazing!',
+        'Good Afternoon Kim 🔧 — ready to craft your vision?',
+        'Good Afternoon Kim 💡 — let’s turn ideas into reality!'
+      ];
+    } else {
+      options = [
+        'Good Evening Kim 🌙 — recharge now, create tomorrow’s success!',
+        'Good Evening Kim ✨ — unwind and dream big for tomorrow!',
+        'Good Evening Kim 🛠️ — reflect and refine your masterpiece!'
+      ];
+    }
 
-console.log(greet);
+    // Pick a random tagline from the current block
+    const greet = options[Math.floor(Math.random() * options.length)];
+
+    // Display it in the page
+    document.getElementById('greeting').innerText = greet;
+  </script>
+</body>
+</html>
